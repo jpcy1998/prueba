@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as io from 'socket.io-client'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'appsocket';
+  socket;
+
+  usuario: string = 'makako'
+  constructor() {
+    this.socket = io()
+  }
+
+  public makako() {
+    var mensaje = (<HTMLInputElement>document.getElementById('mensaje')).value;
+    console.log(mensaje)
+  }
+
 }
