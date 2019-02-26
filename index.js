@@ -24,6 +24,11 @@ const io = socketIo(server)
 io.on('connection', (socket) => {
   console.log('Nuevo makako conectado')
 
+  socket.on('mensaje:usuario',(data) =>{
+    console.log(data)
+    io.sockets.emit('mensaje:server',data)
+  })
+
   socket.on('disconnect', () => {
     console.log('Se nos fue un makako')
   })
