@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "dev": "ng build --watch | node index.js",
+    "dev": "ng build --watch & node index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

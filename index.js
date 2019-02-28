@@ -29,6 +29,10 @@ io.on('connection', (socket) => {
     io.sockets.emit('mensaje:server',data)
   })
 
+  socket.on('mensaje:usuarioEscr',(data) =>{
+    socket.broadcast.emit('mensaje:serverEscr',data)
+  })
+
   socket.on('disconnect', () => {
     console.log('Se nos fue un makako')
   })
