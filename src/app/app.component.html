@@ -5,7 +5,7 @@
       <p>{{escr}}</p>
     </div>
     <div id="output">
-      <p *ngFor="let mensaje of mensajes">
+      <p class="animated bounceIn" *ngFor="let mensaje of mensajes">
         {{mensaje}}
       </p>
     </div>
@@ -14,4 +14,3 @@
   <input type="text" id="mensaje" placeholder="Mensaje" (input)="notificarEscr()">
   <button id="enviar" (click)="enviarMensaje()">Enviar</button>
 </div>
-`
