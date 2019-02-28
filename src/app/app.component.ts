@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   public mensajes: String[] = ['Admin: 😁']
   public escr = ''
   private timer
+  public cont: number = 0
 
   constructor() {
     this.socket = io()
@@ -20,6 +21,10 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.socket.on('mensaje:server', (data) => {
       this.mensajes.push(data.usuario + ': ' + data.mensaje)
+    })
+
+    this.socket.on('contadorUsuarios', (cont) => {
+      this.cont = cont
     })
 
     this.socket.on('mensaje:serverEscr', (data) => {

@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+var cont = 0
 
 // Serve static files
 app.use(express.static(__dirname + '/dist/appsocket'));
@@ -23,17 +24,21 @@ const io = socketIo(server)
 
 io.on('connection', (socket) => {
   console.log('Nuevo makako conectado')
+  cont++
+  io.sockets.emit('contadorUsuarios', (cont))
 
-  socket.on('mensaje:usuario',(data) =>{
+  socket.on('mensaje:usuario', (data) => {
     console.log(data)
-    io.sockets.emit('mensaje:server',data)
+    io.sockets.emit('mensaje:server', data)
   })
 
-  socket.on('mensaje:usuarioEscr',(data) =>{
-    socket.broadcast.emit('mensaje:serverEscr',data)
+  socket.on('mensaje:usuarioEscr', (data) => {
+    socket.broadcast.emit('mensaje:serverEscr', data)
   })
 
   socket.on('disconnect', () => {
     console.log('Se nos fue un makako')
+    cont--
+    io.sockets.emit('contadorUsuarios', (cont))
   })
 })
