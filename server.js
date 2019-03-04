@@ -24,21 +24,36 @@ const io = socketIo(server)
 
 io.on('connection', (socket) => {
   console.log('Nuevo makako conectado')
-  cont++
-  io.sockets.emit('contadorUsuarios', (cont))
+
+  io.sockets.on('connection',(socket) => {
+    // once a client has connected, we expect to get a ping from them saying what room they want to join
+    socket.on('room',(room) => {
+        socket.join(room);
+    });
+});
+
+  // cont++
+  // io.sockets.emit('contadorUsuarios', (cont))
 
   socket.on('mensaje:usuario', (data) => {
+    var keys = Object.keys( socket.rooms )
+    var room=keys[ 0 ]
     console.log(data)
-    io.sockets.emit('mensaje:server', data)
+    // console.log(socket.rooms)
+    // console.log(keys)
+    console.log(room)
+    io.sockets.in(room).emit('mensaje:server', data)
   })
 
   socket.on('mensaje:usuarioEscr', (data) => {
-    socket.broadcast.emit('mensaje:serverEscr', data)
+    var keys = Object.keys( socket.rooms )
+    var room=keys[ 0 ]
+    socket.broadcast.to(room).emit('mensaje:serverEscr', data)
   })
 
   socket.on('disconnect', () => {
     console.log('Se nos fue un makako')
-    cont--
-    io.sockets.emit('contadorUsuarios', (cont))
+    // cont--
+    // io.sockets.emit('contadorUsuarios', (cont))
   })
 })

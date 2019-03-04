@@ -1,17 +1,4 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div id="chat-container">
-  <div id="chat-window">
-    <div id="actions">
-      <p>{{cont}}</p>
-      <p>{{escr}}</p>
-    </div>
-    <div id="output">
-      <p class="animated bounceIn" *ngFor="let mensaje of mensajes">
-        {{mensaje}}
-      </p>
-    </div>
-  </div>
-  <input type="text" id="usuario" placeholder="Usuario">
-  <input type="text" id="mensaje" placeholder="Mensaje" (input)="notificarEscr()">
-  <button id="enviar" (click)="enviarMensaje()">Enviar</button>
-</div>
+<!-- <app-chat1></app-chat1>
+<app-chat2></app-chat2> -->
+<router-outlet></router-outlet>

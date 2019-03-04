@@ -1,0 +1,7 @@
+<h2>Lista de chats</h2>
+
+<ul style="list-style-type:square;" *ngFor="let sala of salas; let i = index" >
+  <li>
+    <a [routerLink]="['/sala',i+1]">{{sala}}</a>
+    </li>
+</ul>

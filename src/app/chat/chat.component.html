@@ -1,0 +1,16 @@
+<div id="chat-container">
+  <div id="chat-window">
+    <div id="actions">
+      <!-- <p>{{cont}}</p> -->
+      <p>{{escr}}</p>
+    </div>
+    <div id="output">
+      <p class="animated bounceIn" *ngFor="let mensaje of mensajes" >
+        {{mensaje}}
+      </p>
+    </div>
+  </div>
+  <input class="chatInput" type="text" id="usuario2" placeholder="Usuario">
+  <input class="chatInput" type="text" id="mensaje2" placeholder="Mensaje" (input)="notificarEscr()">
+  <button class="chatButton" id="enviar" (click)="enviarMensaje()">Enviar</button>
+</div>
