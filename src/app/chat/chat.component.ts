@@ -11,7 +11,7 @@ declare var $: any
 export class ChatComponent implements OnInit {
 
   private socket
-  public mensajes: String[] = ['Admin: 😁']
+  public mensajes: String[] = ['Admin: Hola 😂']
   public escr = ''
   private timer
   // public cont: number = 0
@@ -33,7 +33,7 @@ export class ChatComponent implements OnInit {
         }
       })
    })
-    
+
     this.socket.on('mensaje:server', (data) => {
       this.mensajes.push(data.usuario + ': ' + data.mensaje)
     })
